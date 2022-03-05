@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\TaskController;
+use App\Http\Controllers\Api\PeriodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(TaskController::class)->group(function () {
+    Route::get('/tasks', 'index');
+});
+
+Route::controller(PeriodController::class)->group(function () {
+    Route::get('/periods', 'index');
 });
